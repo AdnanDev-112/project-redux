@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+.main {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+   background-color: bisque;
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(20px);
+}
+.outer {
+    position: absolute;
+    margin: 0;
+    padding: 0%;
+    width:1400px;
+    height: 77vh;
+    border-radius: 20px;
+    border: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 1);
+}
+
+.signupcard {
+    position: absolute;
+    margin: 0;
+    padding-right: 0;
+    background: url('/src/components/Signup/images/3d.png');
+    border-radius: 20px;
+    width: 40rem;
+    height: 77vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border: 20px;
+    background-repeat: no-repeat;
+
+}
+
+.content {
+    display: flex;
+    margin-left: auto;
+    border-radius: 20px;
+    border: 20px;
+    padding-right: 0;
+    justify-content: center;
+    align-items: center;
+    width: 60rem;
+    height: 77vh;
+    background-color: rgb(255, 255, 255);
+}
+h1
+{
+    margin: 20px;
+    text-align: center;
+}
+form
+
+{  margin: 15px;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupbutton
+{   justify-content: center;
+    /* right: 20px; */
+    align-items: center;
+    margin: 4rem 9rem 2rem;
+    padding: 8px 30px;
+    border-radius: 20px;
+    border:2px solid rgb(78, 218, 236);
+    background: rgb(72, 182, 197);
+}
+.control
+{
+    margin-top: 1.2rem;
+    width: 30rem;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-bottom: 1px solid grey;
+    
+}
