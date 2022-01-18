@@ -1,24 +1,24 @@
-import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-loggedIn: false,
-token: 0
+    loggedIn: false
 }
 
 
 
 
 export const userProfileSLice = createSlice({
-    name:"",
+    name: "user",
     initialState,
-    reducers:{
-        userToken:(state)=>{
-
+    reducers: {
+        userStatus: (state) => {
+            state.loggedIn = !state.loggedIn
         }
 
     }
 
 });
 
-export const {userToken} = userProfileSLice.actions;
-export default  userProfileSLice.reducer;
+export const { userStatus } = userProfileSLice.actions;
+export const userLogged = (state) => state.user.loggedIn;
+export default userProfileSLice.reducer;

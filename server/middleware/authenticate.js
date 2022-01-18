@@ -4,16 +4,16 @@ const User = require('../db/model/userSchema');
 
 
 
-const Authenticate = async (req,res,next)=>{
+const Authenticate = async (req, res, next) => {
     try {
 
-        const token = req.cookies.jwtoken;
+        const token = req.cookies.sessiontoken;
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
         console.log(verifyToken);
 
-        const userDetails = await User.findOne({_id:verifyToken._id,"tokens.token":token});
+        const userDetails = await User.findOne({ _id: verifyToken._id, "tokens.token": token });
 
-        if(!userDetails){
+        if (!userDetails) {
             console.log("User Not Found");
         }
         req.token = token;

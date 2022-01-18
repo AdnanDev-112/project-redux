@@ -22,8 +22,8 @@ router.post('/register', async (req, res) => {
 
         if (userExist) {
             return res.status(422).send('Email Already Exists')
-            
-        }else if(password != confirmpassword){
+
+        } else if (password != confirmpassword) {
             return res.status(422).send('Password  Don\'t Match ');
 
         }
@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
 
         await user.save();
         res.status(201).json({ message: "User registered successfully" });
-       
+
 
 
     } catch (error) {
@@ -54,46 +54,57 @@ router.post('/login', async (req, res) => {
 
         const userLogin = await User.findOne({ email: email });
 
-        if(userLogin){
-            const isMatch = await bcrypt.compare(password ,  userLogin.password);
+        if (userLogin) {
+            const isMatch = await bcrypt.compare(password, userLogin.password);
 
             token = await userLogin.generateAuthToken();
-            res.cookie("jwtoken",token , {
+            res.cookie("sessiontoken", token, {
                 expires: new Date(Date.now() + 432000000),
-                httpOnly:true
+                httpOnly: true
             });
 
-        if(!isMatch){
-            res.status(400).json({Error:"Invalid Credentials"});
-        }
-        else{
-            
-            res.json({message:"User Sign in Successfully"});
-        }
-    }else{
-            res.status(400).json({Error:"Invalid Credentials"});
+            if (!isMatch) {
+                res.status(400).json({ Error: "Invalid Credentials" });
+            }
+            else {
+
+                res.json({ message: "User Sign in Successfully" });
+            }
+        } else {
+            res.status(400).json({ Error: "Invalid Credentials" });
 
         }
 
 
 
-        
-       
+
+
     } catch (error) {
         console.log(error)
     }
 
 })
 
-router.get('/profile',authenticate, (req, res) => {
-   res.send(req.userDetails);
+router.get('/profile', authenticate, (req, res) => {
+    res.send(req.userDetails);
 
 });
 
 
-router.get('/categories',async (req,res)=>{
- const data =  await CategoryProfiles.find({});
- res.status(200).send(data);
+router.get('/categories', async (req, res) => {
+    const data = await CategoryProfiles.find({});
+    res.status(200).send(data);
+
+
+});
+
+router.post("/logout", async (req, res) => {
+
+    res.cookie("sessiontoken", "", {
+        expires: new Date(Date.now() + 5000),
+        httpOnly: true
+    });
+    res.status(200).send("Logged Out")
 
 
 

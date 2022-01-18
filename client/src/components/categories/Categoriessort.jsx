@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Profiles from './profileApi'
 import ProfileCard from './ProfileCard';
 import Header from './Header'
@@ -16,10 +16,10 @@ const Categories = () => {
         setProfileData(Updatedlist);
     }
     return (
-    <>
-    <Header filterItem = {filterItem} newData = {newData}/>
-    <ProfileCard profile = {profileData}/> 
-    </>
+        <>
+            <Header filterItem={filterItem} newData={newData} />
+            <ProfileCard profile={profileData} />
+        </>
     )
 }
 

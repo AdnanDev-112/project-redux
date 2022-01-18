@@ -1,8 +1,82 @@
 import React from "react";
 import Logo from "./images/Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogged, userStatus } from "../features/userProfile/userProfileSlice";
+
 
 const Navbar = () => {
+  // const userStatus = useSelector(userLogged);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutUser = async (event) => {
+    const response = await fetch("/logout", {
+      method: "POST",
+      // headers: {
+      //   "Content-Type": "application/json"
+      // }
+    });
+
+    if (response.status == 200) {
+      // window.alert("Sucess");
+      dispatch(userStatus());
+      localStorage.setItem("logged", false)
+      navigate("/home");
+
+    }
+
+  }
+
+  const userLog = localStorage.getItem('logged');
+  console.log(userLog)
+
+  const dropDown = () => {
+    if (userLog === "true") {
+      return (<>
+
+        <li>
+          <Link className="dropdown-item p-0" to="/profile">
+            My profile
+          </Link>
+        </li>
+        <li>
+          <hr className="dropdown-divider" />
+        </li>
+        <li>
+          <button type="button" className="dropdown-item p-0" onClick={logoutUser}>
+            Logout
+          </button >
+        </li>
+      </>)
+
+    } else {
+      return (
+        <>
+
+          <li>
+            <Link className="dropdown-item p-0" to="/register">
+              Sign Up
+            </Link>
+          </li>
+          <li>
+            <hr className="dropdown-divider" />
+          </li>
+          <li>
+            <Link className="dropdown-item p-0" to="/login">
+              Log In
+            </Link>
+          </li>
+
+
+        </>
+      )
+
+    }
+  }
+
+
+
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -28,11 +102,7 @@ const Navbar = () => {
                   Category
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/comms">
-                  Comms(Shortcut)
-                </Link>
-              </li>
+
             </ul>
           </div>
           <div
@@ -66,6 +136,15 @@ const Navbar = () => {
                   className="dropdown-menu p-2 dropdown-menu-dark"
                   aria-labelledby="navbarDropdown"
                 >
+
+                  {dropDown()}
+
+
+                </ul>
+                {/* <ul
+                  className="dropdown-menu p-2 dropdown-menu-dark"
+                  aria-labelledby="navbarDropdown"
+                >
                   <li>
                     <Link className="dropdown-item p-0" to="/register">
                       Sign Up
@@ -79,7 +158,8 @@ const Navbar = () => {
                       Log In
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
+
               </li>
             </ul>
           </div>

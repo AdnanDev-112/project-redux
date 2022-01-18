@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import "./carousel.css";
 import "./categories.css";
 
+
 const Home = () => {
+
   return (
     <>
       {/* Carousel  */}
@@ -36,9 +38,9 @@ const Home = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div
-              class="overlay-image"
+              className="overlay-image"
               style={{
-                "background-image":
+                "backgroundImage":
                   "url('https://source.unsplash.com/1920x1080/?nature,water')",
               }}
             ></div>
@@ -60,9 +62,9 @@ const Home = () => {
           </div>
           <div className="carousel-item">
             <div
-              class="overlay-image"
+              className="overlay-image"
               style={{
-                "background-image":
+                "backgroundImage":
                   "url('https://source.unsplash.com/1920x1080/?nature,water')",
               }}
             ></div>
@@ -84,9 +86,9 @@ const Home = () => {
           </div>
           <div className="carousel-item">
             <div
-              class="overlay-image"
+              className="overlay-image"
               style={{
-                "background-image":
+                "backgroundImage":
                   "url('https://source.unsplash.com/1920x1080/?nature,water')",
               }}
             ></div>

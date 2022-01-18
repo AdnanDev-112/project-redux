@@ -9,7 +9,8 @@ import SignupForm from "./components/Signup/SignupForm";
 import ErrorPage from "./components/ErrorPage/ErrorPage"
 import Profile from './components/Profile/Profile';
 
-
+import Category from './components/categories/Category';
+import GigsForm from './components/gigs/GigsForm';
 
 const App = () => {
   return (
@@ -21,11 +22,13 @@ const App = () => {
 
     <Route path="/" exact element={<Home/>} />
     <Route path="home" exact element={<Home/>} />
-    <Route path="categories" exact element={<Categories/>} />
+    {/* <Route path="categories" exact element={<Categories/>} /> */}
+    <Route path="categories" exact element={<Category/>} />
 
     <Route path="register" exact element={<SignupForm/>}/>
     <Route path="login" exact element={<LoginForm/>}/>
     <Route path="/profile" exact element={<Profile/>}/>
+    <Route path="/complete_profile" exact element={<GigsForm/>}/>
 
 
     <Route path="*" exact element={<ErrorPage/>}/>
