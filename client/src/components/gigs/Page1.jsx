@@ -10,15 +10,15 @@ function Page1({ formData, setFormData }) {
         <>
 
             <div className="flex-wrap">
-                <label className='h4 pe-3'>Full Name</label>
-                <input className='me-2' type="text" placeholder='firstname' />
-                <input className='' type="text" placeholder='lastname' />
+                <h4 className='h4 pe-3' >Full Name</h4>
+                <input className='me-2' type="text" value={formData.firstName} onChange={(event) => setFormData({ ...formData, firstName: event.target.value })} placeholder='firstname' />
+                <input className='' type="text" value={formData.lastName} onChange={(event) => setFormData({ ...formData, lastName: event.target.value })} placeholder='lastname' />
             </div>
 
             <hr className="featurette-divider" />
             <br />
 
-            <label className="h4 me-3">Gig Banner</label>
+            <h4 className="h4 me-3">Gig Banner</h4>
             <input type="file" id='inputfile' />
 
             <div className='img-view mt-2' id='imgview'>
@@ -30,7 +30,7 @@ function Page1({ formData, setFormData }) {
             <hr className="featurette-divider" />
 
             <h2 htmlFor="description">Description</h2>
-            <textarea name="" id="description" cols="90" rows="10"></textarea>
+            <textarea name="" value={formData.description} onChange={(event) => setFormData({ ...formData, description: event.target.value })} id="description" cols="90" rows="10"></textarea>
             <br />
             <hr className="featurette-divider" />
 

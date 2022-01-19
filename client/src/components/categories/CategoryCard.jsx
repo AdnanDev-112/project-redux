@@ -1,11 +1,11 @@
 
 const CategoryCard = (props) => {
-    const { data, id } = props;
+    const { data } = props;
 
     return (
         <>
             <div className="col">
-                <div className="card p-2 m-2" style={{ width: "16rem" }} key={id}>
+                <div className="card p-2 m-2" style={{ width: "16rem" }}>
                     <img src={data.image} className="card-img-top rounded-2" alt="..." />
                     <div className="card-body">
                         <h5 className="card-title">{data.name} </h5>

@@ -24,16 +24,20 @@ const LoginForm = () => {
             })
         });
 
+        // setTimeout(async () => {
+        //     let tem = await response.json().then((res) => res)
+        //     console.log(tem)
+        // }, 6000);
 
 
 
         if (response.status === 400 || !response) {
             window.alert("Invalid Credentials");
-        } else if (response.status == 200) {
+        } else if (response.status === 200) {
             window.alert("Sucess");
             dispatch(userStatus());
             localStorage.setItem("logged", true)
-            console.log(response)
+            // console.log(response)
             navigate("/categories");
 
         }

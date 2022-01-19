@@ -18,7 +18,7 @@ const Navbar = () => {
       // }
     });
 
-    if (response.status == 200) {
+    if (response.status === 200) {
       // window.alert("Sucess");
       dispatch(userStatus());
       localStorage.setItem("logged", false)
@@ -29,7 +29,7 @@ const Navbar = () => {
   }
 
   const userLog = localStorage.getItem('logged');
-  console.log(userLog)
+  // console.log(userLog)
 
   const dropDown = () => {
     if (userLog === "true") {
@@ -40,7 +40,14 @@ const Navbar = () => {
             My profile
           </Link>
         </li>
+        <hr className="dropdown-divider" />
         <li>
+          <Link className="dropdown-item p-0" to="/complete_profile">
+            Become A Seller
+          </Link>
+        </li>
+        <li>
+
           <hr className="dropdown-divider" />
         </li>
         <li>
@@ -82,7 +89,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <div className="container-fluid px-3">
           <Link className="navbar-brand" to="/home">
-            <img src={Logo} height="35" />
+            <img src={Logo} height="35" alt="Logo" />
           </Link>
           <button
             className="navbar-toggler"

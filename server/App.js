@@ -13,7 +13,7 @@ require('./db/conn')
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 
 //Router file linked to make Routes

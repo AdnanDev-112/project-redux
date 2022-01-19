@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
     getAllProfiles,
@@ -20,7 +20,7 @@ const Category = () => {
     let renderCards = "";
     renderCards = data.Response === "False" ? (<><h1>Loading....</h1></>) :
         (data.map((cards, index) => {
-            return <CategoryCard id={index} data={cards} />
+            return <CategoryCard key={index} data={cards} />
         }));
 
     return (
@@ -29,7 +29,7 @@ const Category = () => {
                 <div className="row row-cols-1 row-cols-md-4 g-4">
                     {renderCards}
                 </div>
-                {/* {console.log(data)} */}
+
             </div>
         </>)
 

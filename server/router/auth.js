@@ -29,7 +29,11 @@ router.post('/register', async (req, res) => {
         }
 
 
-        const user = new User({ name, email, password, confirmpassword });
+        const user = new User({
+            name, email, password, confirmpassword, Profile: [{
+                isProfileComplete: false,
+            }]
+        });
 
         await user.save();
         res.status(201).json({ message: "User registered successfully" });
@@ -48,7 +52,7 @@ router.post('/login', async (req, res) => {
         let token;
         const { email, password } = req.body;
         if (!email || !password) {
-            res.status(400).send("Please Fill the fields properly")
+            res.status(400).send("Please Fill the fields properly");
         }
 
 
@@ -68,7 +72,10 @@ router.post('/login', async (req, res) => {
             }
             else {
 
-                res.json({ message: "User Sign in Successfully" });
+                res.json({
+                    message: "User Sign in Successfully",
+                    token: token
+                });
             }
         } else {
             res.status(400).json({ Error: "Invalid Credentials" });
@@ -105,6 +112,37 @@ router.post("/logout", async (req, res) => {
         httpOnly: true
     });
     res.status(200).send("Logged Out")
+
+
+
+});
+
+
+router.post("/complete_profile", authenticate, async (req, res) => {
+
+    try {
+        const token1 = req.cookies.sessiontoken;
+        const { firstName, lastName, description, occupation } = req.body;
+        const user = await User.findOneAndUpdate({ token: token1 },
+            {
+                Profile: [{
+                    isProfileComplete: true,
+                    profileData: [{
+                        fullName: `${firstName} ${lastName}`,
+                        image: "",
+                        description,
+                        occupation,
+                    }]
+                }]
+            }
+
+        );
+        if (user) {
+            res.status(200).send("Profile Updated");
+        }
+    } catch (error) {
+        res.send(error)
+    }
 
 
 

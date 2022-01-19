@@ -30,7 +30,7 @@ const Profile = () => {
         } catch (error) {
             console.log("Catch Error", error);
             window.alert('Please Log In ')
-            navigate('/login')
+            // navigate('/login')
         }
     }
 
