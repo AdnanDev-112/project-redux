@@ -20,6 +20,7 @@ const Profile = () => {
 
             const data = await res.json();
             setUserData(data);
+
             if (!res.status === 200) {
                 console.log("Error");
             }
@@ -30,7 +31,7 @@ const Profile = () => {
         } catch (error) {
             console.log("Catch Error", error);
             window.alert('Please Log In ')
-            // navigate('/login')
+            navigate('/login')
         }
     }
 
@@ -49,6 +50,7 @@ const Profile = () => {
             <h1>Profile here</h1>
             <h2>Name:  {userData.name}</h2>
             <h2>Email: {userData.email}</h2>
+            <img src={userData.Profile[0].profileData[0].image} alt="" />
         </>
     )
 }

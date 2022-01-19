@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 import Page1 from './Page1';
 import Page2 from './Page2';
@@ -10,10 +11,13 @@ function GigsForm() {
 
     const navigate = useNavigate();
     const [page, setPage] = useState(0);
+    const [image, setImage] = useState("");
+    const [file, setFile] = useState([])
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         description: "",
+        image: "",
         occupation: [],
 
     });
@@ -21,7 +25,16 @@ function GigsForm() {
     // Post Form Function 
     const postFormData = async () => {
 
-        const { firstName, lastName, description, occupation } = formData;
+        const { firstName, lastName, description, occupation, image } = formData;
+
+        // Image Part
+        const imgData = new FormData();
+        imgData.append("file", file);
+        imgData.append("upload_preset", "fgjs1dpj");
+
+        const uploadImg = await axios.post("https://api.cloudinary.com/v1_1/dgcdtnjau/image/upload", imgData)
+        // console.log(uploadImg);
+        const imageURL = uploadImg.data.url;
 
         const response = await fetch("/complete_profile", {
             method: "POST",
@@ -30,7 +43,7 @@ function GigsForm() {
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                firstName, lastName, description, occupation
+                firstName, lastName, description, occupation, image: imageURL,
             }),
             credentials: "include"
         });
@@ -51,7 +64,8 @@ function GigsForm() {
 
     const PageDisplay = () => {
         if (page === 0) {
-            return <Page1 formData={formData} setFormData={setFormData} />;
+            return <Page1 formData={formData} setFormData={setFormData} image={image} setImage={setImage} file={file}
+                setFile={setFile} />;
         } else if (page === 1) {
             return <Page2 formData={formData} setFormData={setFormData} />;
         }

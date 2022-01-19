@@ -122,14 +122,14 @@ router.post("/complete_profile", authenticate, async (req, res) => {
 
     try {
         const token1 = req.cookies.sessiontoken;
-        const { firstName, lastName, description, occupation } = req.body;
+        const { firstName, lastName, description, occupation, image } = req.body;
         const user = await User.findOneAndUpdate({ token: token1 },
             {
                 Profile: [{
                     isProfileComplete: true,
                     profileData: [{
                         fullName: `${firstName} ${lastName}`,
-                        image: "",
+                        image,
                         description,
                         occupation,
                     }]

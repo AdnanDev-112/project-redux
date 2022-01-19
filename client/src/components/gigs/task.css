@@ -10,6 +10,9 @@
   display: flex;
   font-weight: bold;
   color: rgb(150, 144, 144);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .img-view__img {

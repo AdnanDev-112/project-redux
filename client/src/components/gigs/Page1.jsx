@@ -3,9 +3,15 @@ import "./task.css"
 
 
 
-function Page1({ formData, setFormData }) {
+function Page1({ formData, setFormData, image, setImage, file, setFile }) {
+
+    const ImageFunc = (image) => {
+        const img = image[0];
+        setFile(img);
+        setImage(URL.createObjectURL(img));
 
 
+    }
     return (
         <>
 
@@ -19,11 +25,10 @@ function Page1({ formData, setFormData }) {
             <br />
 
             <h4 className="h4 me-3">Gig Banner</h4>
-            <input type="file" id='inputfile' />
 
-            <div className='img-view mt-2' id='imgview'>
-                <img src="" alt="" className='img-view__img' />
-                <span className="img-view__def-txt"> Image Preview </span>
+            <input type="file" id='inputfile' onChange={(event) => { ImageFunc(event.target.files) }} />
+            <div className='img-view mt-2' style={{ backgroundImage: `url(${image})` }} id='imgview'>
+                <span className="img-view__def-txt" > Image Preview </span>
             </div>
 
             <br />
