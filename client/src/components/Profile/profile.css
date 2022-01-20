@@ -1,0 +1,11 @@
+.image {
+  margin-top: 10px;
+  background-color: grey;
+  border-radius: 7rem;
+  width: 7.5rem;
+  height: 7.5rem;
+}
+
+span {
+  margin: 0.3rem;
+}

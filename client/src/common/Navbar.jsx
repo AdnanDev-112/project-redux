@@ -36,7 +36,7 @@ const Navbar = () => {
       return (<>
 
         <li>
-          <Link className="dropdown-item p-0" to="/profile">
+          <Link className="dropdown-item p-0" to="/myprofile">
             My profile
           </Link>
         </li>

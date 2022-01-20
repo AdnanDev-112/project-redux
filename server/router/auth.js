@@ -12,6 +12,8 @@ const CategoryProfiles = require("../db/model/categorySchema");
 
 router.post('/register', async (req, res) => {
     const { name, email, password, confirmpassword } = req.body;
+    const joinedDate = new Date().getTime();
+
     if (!name || !email || !password || !confirmpassword) {
         return res.status(422).send('Please fill the field')
     }
@@ -30,7 +32,7 @@ router.post('/register', async (req, res) => {
 
 
         const user = new User({
-            name, email, password, confirmpassword, Profile: [{
+            username: name, email, password, confirmpassword, joinedDate, Profile: [{
                 isProfileComplete: false,
             }]
         });
@@ -92,8 +94,10 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.get('/profile', authenticate, (req, res) => {
+router.get('/myprofile', authenticate, (req, res) => {
+
     res.send(req.userDetails);
+    // res.send(req.userDetails);
 
 });
 
