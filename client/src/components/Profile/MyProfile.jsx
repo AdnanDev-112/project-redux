@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./profile.css"
 import ProfIg from "./bg.png"
-import cardImg from "./carddd.jpg"
 import test from "./test.jpg"
 
 
@@ -35,6 +34,8 @@ const MyProfile = () => {
 
             if (!res.status === 200) {
                 console.log("Error");
+                // window.alert('Please Log In ')
+                // navigate('/login')
             }
 
 
@@ -42,8 +43,7 @@ const MyProfile = () => {
 
         } catch (error) {
             console.log("Catch Error", error);
-            // window.alert('Please Log In ')
-            // navigate('/login')
+
         }
     }
 

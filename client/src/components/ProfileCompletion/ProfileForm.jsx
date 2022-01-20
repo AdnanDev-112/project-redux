@@ -6,7 +6,7 @@ import Page1 from './Page1';
 import Page2 from './Page2';
 
 
-function GigsForm() {
+function ProfileForm() {
 
 
     const navigate = useNavigate();
@@ -99,4 +99,4 @@ function GigsForm() {
     )
 }
 
-export default GigsForm
+export default ProfileForm

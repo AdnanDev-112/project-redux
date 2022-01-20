@@ -10,7 +10,7 @@ import ErrorPage from "./components/ErrorPage/ErrorPage"
 import MyProfile from './components/Profile/MyProfile';
 
 import Category from './components/categories/Category';
-import GigsForm from './components/gigs/GigsForm';
+import ProfileForm from './components/ProfileCompletion/ProfileForm';
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
           <Route path="register" exact element={<SignupForm />} />
           <Route path="login" exact element={<LoginForm />} />
           <Route path="/myprofile" exact element={<MyProfile />} />
-          <Route path="/complete_profile" exact element={<GigsForm />} />
+          <Route path="/complete_profile" exact element={<ProfileForm />} />
 
 
           <Route path="*" exact element={<ErrorPage />} />
