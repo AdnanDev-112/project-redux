@@ -9,6 +9,7 @@ const CategoryProfiles = require("../db/model/categorySchema");
 
 require("../db/conn");
 const User = require("../db/model/userSchema");
+const PbProfile = require("../db/model/publicProfileSchema");
 
 
 
@@ -27,6 +28,31 @@ router.get('/categories', async (req, res) => {
 
 
 });
+
+router.get("/profile/:profileName", async (req, res) => {
+    try {
+
+
+        const profileName = req.params.profileName;
+        const fetchProfile = await PbProfile.findOne({ username: profileName });
+
+        if (fetchProfile) {
+            res.status(200).send(fetchProfile);
+        } else {
+            res.status(404).send();
+        }
+    } catch (error) {
+        res.send(error)
+    }
+
+
+
+
+})
+
+
+
+
 
 router.post("/complete_profile", authenticate, async (req, res) => {
 

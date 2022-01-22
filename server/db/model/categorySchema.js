@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 
 
 const categorySchema = new mongoose.Schema({
-    category:{
-        type:String
+    category: {
+        type: String
     },
-    name:{
-        type:String
+    name: {
+        type: String
     },
-    description:{
-        type:String
+    description: {
+        type: String
     }
 
 
@@ -18,6 +18,6 @@ const categorySchema = new mongoose.Schema({
 
 
 
-const CategoryProfiles = mongoose.model('profiles',categorySchema);
+const CategoryProfiles = mongoose.model('category-profiles', categorySchema);
 
-module.exports =  CategoryProfiles;
+module.exports = CategoryProfiles;

@@ -6,6 +6,7 @@ const authenticate = require("../middleware/authenticate");
 
 require("../db/conn");
 const User = require("../db/model/userSchema");
+const PublicProfileSchema = require("../db/model/publicProfileSchema");
 
 router.post("/register", async (req, res) => {
     const { name, email, password, confirmpassword } = req.body;
@@ -38,8 +39,17 @@ router.post("/register", async (req, res) => {
         });
 
         await user.save();
+        // After Saving in the main Collection Save in the Public Profiles Schema
+        const newProfile = new PublicProfileSchema({
+            isProfileComplete: false,
+            username: name,
+            joinedDate,
+        });
+        await newProfile.save();
+
+
         res.status(201).json({ message: "User registered successfully" });
-    } catch (error) { }
+    } catch (error) { console.log(error); }
 });
 
 router.post("/login", async (req, res) => {

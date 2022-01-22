@@ -7,10 +7,13 @@ import Footer from './common/Footer';
 import LoginForm from "./components/Login/LoginForm";
 import SignupForm from "./components/Signup/SignupForm";
 import ErrorPage from "./components/ErrorPage/ErrorPage"
-import MyProfile from './components/Profile/MyProfile';
+import MyProfile from './components/MyProfile/MyProfile';
 
 import Category from './components/categories/Category';
 import ProfileForm from './components/ProfileCompletion/ProfileForm';
+import GigForm from './components/CreateGigs/GigForm';
+
+import PublicProfile from "./components/PublicProfile/PublicProfile"
 
 const App = () => {
   return (
@@ -27,10 +30,18 @@ const App = () => {
 
           <Route path="register" exact element={<SignupForm />} />
           <Route path="login" exact element={<LoginForm />} />
-          <Route path="/myprofile" exact element={<MyProfile />} />
-          <Route path="/complete_profile" exact element={<ProfileForm />} />
+          {/* <Route path="myprofile" exact element={<MyProfile />} /> */}
+          <Route path="complete_profile" exact element={<ProfileForm />} />
+          <Route path="complete_gig" exact element={< GigForm />} />
 
 
+          <Route path="profile/:profName" element={<PublicProfile />} />
+
+
+
+
+
+          <Route path="error" exact element={<ErrorPage />} />
           <Route path="*" exact element={<ErrorPage />} />
 
 
