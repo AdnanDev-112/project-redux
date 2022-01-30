@@ -17,8 +17,8 @@ app.use(cors({ origin: "*" }));
 
 
 //Router file linked to make Routes
-app.use(require('./router/auth'));
 app.use(require('./router/routes'));
+app.use(require('./router/auth'));
 const PORT = process.env.PORT;
 
 

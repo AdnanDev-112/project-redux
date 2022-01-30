@@ -1,42 +1,104 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import "./overview.css"
+// import "./overview.js"
 
-function Overview() {
+function Overview({ formData, setFormData, image, setImage, file, setFile, api }) {
+  const ImageFunc = (image) => {
+    const img = image[0];
+    setFile(img);
+    setImage(URL.createObjectURL(img));
+
+
+  }
+
+  const [selectedCato, setSelectedCato] = useState(formData.category);
+  const [selectedOpt2, setSelectedOpt2] = useState([]);
+
+  useEffect(() => {
+    console.log(api);
+    handleOption2()
+  }, []);
+
+
+  function handleOption2() {
+    const temp = api.filter(elems => elems.option1 === selectedCato);
+    const temp2 = temp[0].option2;
+    setSelectedOpt2(temp2);
+  }
+  function handleOption1(value) {
+    setSelectedCato(value);
+    const temp = api.filter(elems => elems.option1 === value);
+    const temp2 = temp[0].option2;
+    setSelectedOpt2(temp2);
+    setFormData({ ...formData, category: value, category1: temp2[0] })
+
+  }
+
+
   return <>
-    <div className='container  '>
+    <div className='container overview '>
 
       <div className="card m-5 gg">
         <div className='title' >
-          <label className=''>TITLE</label>
-          <input type="text" className=" ms-4" style={{ width: '25rem', margin: '0px 100px' }} />
+          <label className='h3'>TITLE</label>
+          <br />
+          <br />
+
+          <textarea name="" id="" value={formData.title} onChange={(event) => setFormData({ ...formData, title: event.target.value })} cols="64" rows="3"></textarea>
 
         </div>
         <br />
         <div className='category'>
 
 
-          <label >Category</label>
-          <select name="category" className=' ms-4 rounded-3 px-4' style={{}}>
-            <option value="option">Option</option>
-            <option value="option1">Option1</option>
-            <option value="option2">Option2</option>
+          <label className='h3'>Category</label>
+          <br />
+          <br />
+          <select value={formData.category} name="category" className=' ms-5 rounded-3 px-4' onChange={(event) => handleOption1(event.target.value)} style={{}}>
+            {api.map((elem, index) => {
+              return (
+                <option key={index} value={elem.option1} defaultValue="">{elem.option1}</option>
+
+              )
+            })}
           </select>
-          <select name="subcategory" className='ms-4 rounded-3 px-4'>
-            <option value="option">Option</option>
-            <option value="option1">Option1</option>
-            <option value="option2">Option2</option>
+          <select value={formData.category1} name="subcategory" onChange={(event) => setFormData({ ...formData, category1: event.target.value })} className='ms-5 rounded-3 px-4'>
+            {selectedOpt2.map((elem, index) => {
+              return (
+                <option key={index} value={elem} defaultValue="">{elem}</option>
+              )
+            })}
+
           </select>
         </div>
 
-        <div className='search'>
-          <label className=''>Search Tag</label>
+        <center className="mt-4">
 
-          <input type="text" className=" ms-4  " style={{ height: '6rem', width: '25rem', margin: '0px 100px' }} />
+          <input type="file" id="image_input" onChange={(event) => { ImageFunc(event.target.files) }} accept='image/png,image/jpg' />
+          <div id="display_image" style={{ backgroundImage: `url(${image})` }}>
+            <br />
+            <span className="image-preview m-4">image Preview</span>
+
+          </div>
+          <br />
+          <span>Edit your Profile</span>
+
+        </center>
+
+        <div className='search'>
+          <label className='h3'>Description</label>
+          <br />
+
+          <br />
+          <textarea name="" id="" value={formData.description} onChange={(event) => setFormData({ ...formData, description: event.target.value })} cols="50" rows="7"></textarea>
+
+
 
         </div>
       </div>
 
     </div>
-
 
 
 

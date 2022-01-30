@@ -1,17 +1,40 @@
 import React, { useState } from 'react';
 import Overview from "./Overview";
-import Pricing from "./Pricing"
+import Pricing from "./Pricing";
+import API from "./catApi";
+
 
 const GigForm = () => {
     const [page, setPage] = useState(0);
+    const [image, setImage] = useState("");
+    const [file, setFile] = useState([])
+    const [formData, setFormData] = useState({
+        title: "",
+        category: "Music & Audio",
+        category1: "Singer",
+        description: "",
+        image: "",
+        price: ["", ""],
+        pricingPage: {
+            title1: "",
+            description1: "",
+            deadline1: "",
+            title2: "",
+            description2: "",
+            deadline2: "",
+            checkedBoxes: []
 
-    const FormTitles = ["Personal Info", "Professional Info"];
+        }
+    });
+
+    const FormTitles = ["Overview Info", "Pricing Info"];
 
     const PageDisplay = () => {
         if (page === 0) {
-            return <Overview />;
+            return <Overview formData={formData} setFormData={setFormData} image={image} setImage={setImage} file={file}
+                setFile={setFile} api={API} />;
         } else if (page === 1) {
-            return <Pricing />;
+            return <Pricing formData={formData} setFormData={setFormData} />;
         }
     };
 

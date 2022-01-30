@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
+const randomString = require('randomstring');
+
 
 require("../db/conn");
 const User = require("../db/model/userSchema");
@@ -24,13 +26,14 @@ router.post("/register", async (req, res) => {
         } else if (password != confirmpassword) {
             return res.status(422).send("Password  Don't Match ");
         }
-
+        const profileID = randomString.generate({ length: 24 })
         const user = new User({
             username: name,
             email,
             password,
             confirmpassword,
             joinedDate,
+            profileID,
             Profile: [
                 {
                     isProfileComplete: false,
@@ -44,6 +47,7 @@ router.post("/register", async (req, res) => {
             isProfileComplete: false,
             username: name,
             joinedDate,
+            profileID,
         });
         await newProfile.save();
 
@@ -67,6 +71,10 @@ router.post("/login", async (req, res) => {
 
             token = await userLogin.generateAuthToken();
             res.cookie("sessiontoken", token, {
+                expires: new Date(Date.now() + 432000000),
+                httpOnly: true,
+            });
+            res.cookie("ssi", userLogin.profileID, {
                 expires: new Date(Date.now() + 432000000),
                 httpOnly: true,
             });

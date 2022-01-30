@@ -1,0 +1,26 @@
+.pricing .card {
+  height: 51.3rem;
+  width: 50rem;
+}
+.pricing .th,
+.td {
+  border: 1px solid rgb(212, 212, 212);
+  padding: 0px;
+}
+.pricing input {
+  margin-left: 8rem;
+}
+.pricing textarea {
+  resize: none;
+}
+
+.pricing #btn {
+  margin-left: 38.5rem;
+}
+.pricing .price {
+  margin: 0px;
+  width: 17rem;
+}
+.pricing .gg {
+  margin: 0px;
+}

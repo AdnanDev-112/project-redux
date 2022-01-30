@@ -58,7 +58,18 @@ router.post("/complete_profile", authenticate, async (req, res) => {
 
     try {
         const token1 = req.cookies.sessiontoken;
+        const profielID = req.cookies.ssi;
         const { firstName, lastName, description, occupation, image } = req.body;
+        const Pbprfile = await PbProfile.findOneAndUpdate({ profielID }, {
+            isProfileComplete: true,
+            profileData: [{
+                fullName: `${firstName} ${lastName}`,
+                image,
+                description,
+                occupation,
+            }]
+
+        })
         const user = await User.findOneAndUpdate({ token: token1 },
             {
                 Profile: [{
@@ -73,7 +84,9 @@ router.post("/complete_profile", authenticate, async (req, res) => {
             }
 
         );
-        if (user) {
+
+        if (user && PbProfile) {
+
             res.status(200).send("Profile Updated");
         }
     } catch (error) {

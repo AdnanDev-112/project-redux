@@ -23,6 +23,8 @@ const userSchema = new mongoose.Schema({
         type: String
     }
     ,
+    profileID: { type: String }
+    ,
     // tokens:[
     //     {
     //         token:{

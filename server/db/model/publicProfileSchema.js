@@ -8,6 +8,8 @@ const profileSchema = new mongoose.Schema({
     joinedDate: {
         type: String
     },
+    profileID: { type: String }
+    ,
     profileData: [{
         fullName: { type: String },
         image: { type: String },

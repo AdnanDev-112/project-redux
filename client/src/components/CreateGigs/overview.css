@@ -1,0 +1,45 @@
+.overview .gg {
+  height: 69rem;
+  width: 40rem;
+}
+.overview .title {
+  margin-left: 2.4rem;
+  margin-top: 3.2rem;
+}
+.overview .search {
+  margin-left: 2.4rem;
+  margin-top: 3rem;
+}
+
+.overview .category {
+  margin-left: 2.4rem;
+  margin-top: 4.6rem;
+}
+.overview .rounded-3 {
+  align-items: center;
+}
+.overview .btn-outline-success {
+  margin-left: 29rem;
+}
+.overview .image {
+  margin-top: 10px;
+  background-color: grey;
+  border-radius: 0.2rem;
+  width: 22rem;
+  height: 10rem;
+}
+.overview #display_image {
+  margin-top: 20px;
+  width: 27rem;
+  min-height: 14rem;
+  border: 2px solid rgb(160, 160, 160);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  color: rgb(150, 144, 144);
+}
+.overview textarea {
+  resize: none;
+  margin-left: 2rem;
+}
