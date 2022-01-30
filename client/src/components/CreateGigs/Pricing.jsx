@@ -25,15 +25,15 @@ function Pricing({ formData, setFormData }) {
 
   const profession = profesDetails.filter((elem) => Object.keys(elem) == formData.category1)[0];
 
-  // Rendering the Checks
+  // Use State for  Checks
   const [checkedState, setcheckedState] = useState(
     new Array(profession[Object.keys(profession)[0]].length * 2).fill(false)
   );
 
   const handleOnCheck = (position) => {
-    console.log(position);
+
     const updateCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
+      ++index === position ? !item : item
     );
     setcheckedState(updateCheckedState);
 
@@ -45,60 +45,32 @@ function Pricing({ formData, setFormData }) {
     // }).filter(function (element) {
     //   return element !== undefined;
     // });
-    setFormData({ ...formData, checkedBoxes: updateCheckedState })
+    setFormData({ ...formData, pricingPage: { ...pricingPage, checkedBoxes: updateCheckedState } })
 
   }
 
+
+  // Rendering Check Boxes 
   function renderOptions() {
-    const chkBoxes = (
-      checkedState.map((element, index) => {
-        return (
-          <td key={index} className="td"><input className="form-check-input" onChange={() => handleOnCheck(index)} checked={checkedState[index]} type="checkbox" defaultValue="" id="flexCheckChecked" />
-          </td>
-
-        )
-      })
-
-    )
     return profession[Object.keys(profession)[0]].map((elemen, index) => {
       let temp = index;
-
-      const rr = (
+      if (index !== 0) { temp *= 2 } else { temp = index }
+      return (
         <tr key={index} rowSpan={1}>
           <td className="td">{elemen}</td>
 
 
+          <td className="td"><input className="form-check-input" onChange={() => handleOnCheck(temp)} checked={checkedState[temp]} type="checkbox" defaultValue="" id="flexCheckChecked" />
+          </td>
+
+          <td className="td"><input className="form-check-input" onChange={() => handleOnCheck(++temp)} checked={checkedState[++temp]} type="checkbox" defaultValue="" id="flexCheckChecked" />
+          </td>
         </tr>
-
-      );
-
-      return rr
-
-      // return (
-      //   <tr key={index} rowSpan={1}>
-      //     <td className="td">{elemen}</td>
-
-
-      //   //   {/* <td className="td"><input className="form-check-input" onChange={() => handleOnCheck(temp)} checked={checkedState[temp]} type="checkbox" defaultValue="" id="flexCheckChecked" />
-      //   //   </td>
-
-      //   //   <td className="td"><input className="form-check-input" onChange={() => handleOnCheck(++temp)} checked={checkedState[++temp]} type="checkbox" defaultValue="" id="flexCheckChecked" />
-      //   //   </td> */}
-      //   </tr>
-      // )
-
-    })
-  }
-  function renderCheckBoxes() {
-    return checkedState.map((element, index) => {
-      return (
-        <td className="td"><input className="form-check-input" onChange={() => handleOnCheck(index)} checked={checkedState[index]} type="checkbox" defaultValue="" id="flexCheckChecked" />
-        </td>
-
       )
-    })
 
+    })
   }
+
 
   return (
     <>
