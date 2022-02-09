@@ -14,6 +14,7 @@ import ProfileForm from './components/ProfileCompletion/ProfileForm';
 import GigForm from './components/CreateGigs/GigForm';
 
 import PublicProfile from "./components/PublicProfile/PublicProfile"
+import GigDisplay from './components/GigDisplay/GigDisplay';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
 
           <Route path="profile/:profName" element={<PublicProfile />} />
 
+          <Route path="categories/gig/:gigID" element={<GigDisplay />} />
 
 
 

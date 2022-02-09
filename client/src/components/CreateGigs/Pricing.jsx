@@ -105,33 +105,32 @@ function Pricing({ formData, setFormData }) {
 
 
                 <td className="td">
-                  <select className="form-select " aria-label="Default select example">
-                    <option defaultValue="">Deadline</option>
-                    {basicDelivery.map((elem, index) => <option key={index} defaultValue="">{elem} Days </option>)}
+                  <select className="form-select" value={formData.pricingPage.deadline1} onChange={(event) => setFormData({ ...formData, pricingPage: { ...pricingPage, deadline1: event.target.value } })} aria-label="Default select example">
+                    {basicDelivery.map((elem, index) => <option key={index} value={elem} defaultValue="">{elem} Days </option>)}
                   </select></td>
 
 
 
-                <td className="td"><select className="form-select " aria-label="Default select example">
-                  <option defaultValue="">Deadline</option>
-                  {premiumDelivery.map((elem, index) => <option key={index} defaultValue="">{elem} Days </option>)}
+                <td className="td"><select className="form-select" value={formData.pricingPage.deadline2} onChange={(event) => setFormData({ ...formData, pricingPage: { ...pricingPage, deadline2: event.target.value } })} aria-label="Default select example">
+                  {premiumDelivery.map((elem, index) => <option key={index} value={elem} defaultValue="">{elem} Days </option>)}
 
                 </select></td>
               </tr>
               <tr>
                 <td className="td">Revisions</td>
-                <td className="td"><select className="form-select " aria-label="Default select example">
-                  <option defaultValue="">Select</option>
-                  {basicDelivery.map((elem, index) => <option key={index} defaultValue="">{index + 1}  </option>)}
-                </select></td>
+                <td className="td">
+                  <select className="form-select " aria-label="Default select example" value={formData.pricingPage.revision1} onChange={(event) => setFormData({ ...formData, pricingPage: { ...pricingPage, revision1: event.target.value } })}>
+                    <option defaultValue="">Select</option>
+                    {basicDelivery.map((elem, index) => <option key={index} value={index + 1} defaultValue="">{index + 1}  </option>)}
+                  </select></td>
 
 
-                <td className="td"><select className="form-select " aria-label="Default select example">
-                  <option defaultValue="">Select</option>
-                  <option defaultValue="1">One</option>
-                  <option defaultValue="2">Two</option>
-                  <option defaultValue="3">Three</option>
-                </select></td>
+                <td className="td">
+                  <select className="form-select " aria-label="Default select example" value={formData.pricingPage.revision2} onChange={(event) => setFormData({ ...formData, pricingPage: { ...pricingPage, revision2: event.target.value } })}>
+                    <option defaultValue="">Select</option>
+                    {basicDelivery.map((elem, index) => <option key={index} value={index + 1} defaultValue="">{index + 1}  </option>)}
+                    <option value={"unlimited"} defaultValue="">Unlimited</option>
+                  </select></td>
 
               </tr>
 

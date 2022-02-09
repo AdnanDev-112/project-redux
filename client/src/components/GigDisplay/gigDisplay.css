@@ -1,0 +1,56 @@
+.image {
+  margin-top: 10px;
+  background-color: grey;
+  border-radius: 7rem;
+  width: 7.5rem;
+  height: 7.5rem;
+}
+
+span {
+  margin: 0.3rem;
+}
+.profile .nav {
+  height: 2.2vh;
+  width: 26.5rem;
+
+  justify-content: space-around;
+}
+.profile .a {
+  position: relative;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  color: rgb(48, 42, 42);
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  padding: 0 40px;
+}
+.profile .basic {
+  font-weight: 700;
+}
+.profile .a:after {
+  content: "";
+  position: absolute;
+  background-color: rgb(9, 167, 9);
+  height: 5px;
+  border-radius: 2px;
+  width: 0;
+  left: 0;
+  bottom: -8px;
+  transition: 0.3s;
+}
+.profile .a:hover {
+  color: rgb(36, 36, 36);
+}
+.profile .a:hover:after {
+  width: 100%;
+}
+.profile .pfcard {
+  margin-left: auto;
+  margin-right: 10rem;
+  height: 10vw;
+  margin-bottom: 30rem;
+}
+.profile .pf {
+  margin-left: auto;
+  position: relative;
+}

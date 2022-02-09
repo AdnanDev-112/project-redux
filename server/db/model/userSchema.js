@@ -50,9 +50,11 @@ const userSchema = new mongoose.Schema({
             fullName: { type: String },
             image: { type: String },
             description: { type: String },
-            occupation: { type: Array }
+            occupation: { type: Array, default: [] },
+
         }]
-    }]
+    }],
+    gigsOwned: { type: Array, default: [] }
 
 
 

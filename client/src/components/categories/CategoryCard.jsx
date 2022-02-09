@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const CategoryCard = (props) => {
     const { data } = props;
@@ -10,7 +11,7 @@ const CategoryCard = (props) => {
                     <div className="card-body">
                         <h5 className="card-title">{data.name} </h5>
                         <p className="card-text">{data.description}</p>
-                        <a href="#" className="btn btn-primary rounded-pill">View {data.name}</a>
+                        <Link to={`gig/${data.gigID}`} className="btn btn-primary rounded-pill">View</Link>
                     </div>
                 </div>
             </div>
